@@ -15,7 +15,13 @@ app.use(cors());
 // call the API
 app.get('/:query', (req, res) => {
     const query = req.params.query
-    axios.get(`https://tastedive.com/api/similar?q=${query}&verbose=1&info=1&type=music&k=421974-musictas-2JCVA89T`)
+    let queryArray = query.split(" ")
+    let filteredQueryArray = queryArray.filter(function(e){
+        return e != "";
+    })
+    let q = filteredQueryArray.join("+");
+
+    axios.get(`https://tastedive.com/api/similar?q=${q}&verbose=1&info=1&type=music&k=421974-musictas-2JCVA89T`)
     .then(data => {res.send(CircularJSON.stringify(data.data));})
     .catch(error=> {console.log(error.message);})});
     
