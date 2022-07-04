@@ -13,8 +13,9 @@ import { changeQuery } from "../redux/songsSlice";
 export const Navbar = () => {
   const dispatch = useDispatch();
   const handleSearch = (event) => {
+    const val = event.target.value
     // usedispatch to update the query with event.target.value
-    dispatch(changeQuery({query: event.target.value}))
+    dispatch(changeQuery(val === ''? {query: "gorillaz"} : {query:val}))
   };
   return (
     <Header>

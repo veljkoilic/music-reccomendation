@@ -20,7 +20,7 @@ export const Recommendations = () => {
   }, [query]);
     let reccomendedMusic = useSelector(state=>state.songs.songs)
   console.log(query)
-  const songElements = reccomendedMusic.map((song) => <Reccomendation key={song.yID} song={song} />)
+  const songElements = reccomendedMusic.map((song) => song.yID && <Reccomendation key={song.yID} song={song} />)
   return (
     <Container>
       {songElements}
