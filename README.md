@@ -16,6 +16,3 @@ This runs the app in the development mode on http://localhost:3000/
 After that also in the main directory, you can run
 ### `node proxy.js`
 This starts the proxy server needed for the CORS implementation on port http://localhost:5000/
-
-## In Future updates
-Stripe checkout is in development
