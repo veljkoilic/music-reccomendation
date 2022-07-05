@@ -7,7 +7,7 @@ import { Reccomendation } from "./Reccomendation";
 import { useDispatch, useSelector } from "react-redux";
 import { addSongs } from "../redux/songsSlice";
 
-export const Recommendations = ({ sidebar }) => {
+export const Recommendations = (props) => {
   const dispatch = useDispatch();
 
   const query = useSelector((state) => state.songs.query);
@@ -19,10 +19,10 @@ export const Recommendations = ({ sidebar }) => {
   let reccomendedMusic = useSelector((state) => state.songs.songs);
   console.log(query);
   const songElements = reccomendedMusic.map(
-    (song) => song.yID && <Reccomendation key={song.yID} song={song} />
+    (song) => song.yID && <Reccomendation key={song.yID} song={song}  sidebar={props.sidebar}/>
   );
   return (
-    <Container style={sidebar? { display: "flex", flexDirection: "column" }: {}}>
+    <Container style={props.sidebar? { display: "flex", flexDirection: "column" }: {}}>
       {songElements}
     </Container>
   );

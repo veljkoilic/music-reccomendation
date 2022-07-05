@@ -2,27 +2,35 @@ import React from "react";
 import styled from "styled-components";
 import { mobile, tablet } from "../responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faVideo, faMicrophone, faFolderPlus, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faVideo,
+  faMicrophone,
+  faFolderPlus,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import { faBell, faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
 import { changeQuery } from "../redux/songsSlice";
-
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
   const handleSearch = (event) => {
-    const val = event.target.value
+    const val = event.target.value;
     // usedispatch to update the query with event.target.value
-    dispatch(changeQuery(val === ''? {query: "gorillaz"} : {query:val}))
+    dispatch(changeQuery(val === "" ? { query: "gorillaz" } : { query: val }));
   };
   return (
     <Header>
-      <Left>
-        <Logo src="https://www.designbust.com/download/1005/png/transparent_background_youtube_logo_png512.png" />
-        <h5>YT Music REC</h5>
-      </Left>
+      <Link to="/">
+        <Left>
+          <Logo src="https://www.designbust.com/download/1005/png/transparent_background_youtube_logo_png512.png" />
+          <h5>YT Music REC</h5>
+        </Left>
+      </Link>
       <Middle>
         <SearchInputWrapper>
           <input type="text" placeholder="Search" onChange={handleSearch} />

@@ -9,7 +9,7 @@ import store from "../redux/store";
 import { changeSong } from "../redux/songsSlice";
 import { useNavigate } from "react-router-dom";
 
-export const Reccomendation = ({ song }) => {
+export const Reccomendation = ({ song, sidebar }) => {
  const dispatch = useDispatch()
  const navigate = useNavigate()
  const handleClick = ()=>{
@@ -17,8 +17,9 @@ export const Reccomendation = ({ song }) => {
   navigate(`/song/${song.yID}`)
  }
   return (
+  
     <div onClick={handleClick} style={{display:"flex", cursor:"pointer", justifyContent: "center"}} >
-      <Container onClick={()=>{}}>
+      <Container style={sidebar ? {flexDirection: "row" } : {flexDirection: "column"}}>
         <Thumbnail src={`https://img.youtube.com/vi/${song.yID}/0.jpg`} />
         <Info>
           <SongName>{song.Name}</SongName>
@@ -36,7 +37,8 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 250px;
-  flex-direction: column;
+  /* flex-direction: column; */
+  /* flex-direction: ${props => props.sidebar ? 'row' : 'column'}; */
   margin-bottom: 30px;
   width: 99%;
 
@@ -48,7 +50,8 @@ width: 100%;
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
+  padding: 10px;
+
   gap: 5px;
   svg{
     font-size: 14px;

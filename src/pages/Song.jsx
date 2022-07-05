@@ -48,7 +48,7 @@ const InfoWrap = styled.div`
   padding: 40px;
 
   .reccomendations{
-    flex: 10;
+    flex: 9;
     height: 700px;
     overflow-y: scroll;
   }
