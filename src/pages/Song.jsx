@@ -28,7 +28,7 @@ export const Song = () => {
 
         </Info>
         <div className="reccomendations">
-        <Recommendations className="" sidebar={true}/>
+        <Recommendations className="" query={currentSong.Name} sidebar={true}/>
 
         </div>
       </InfoWrap>

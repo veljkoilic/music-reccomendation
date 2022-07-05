@@ -14,13 +14,15 @@ import { faBell, faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../redux/store";
 import { changeQuery } from "../redux/songsSlice";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
   const dispatch = useDispatch()
   const videoID = useParams().id
   const navigate = useNavigate()
   const [searchInput, setSearchInput] = useState("")
+  const location = useLocation()
+
   const handleSearch = (event) => {
     const val = event.target.value;
     // usedispatch to update the query with event.target.value
@@ -37,7 +39,7 @@ export const Navbar = () => {
       </Left>
       <Middle>
         <SearchInputWrapper>
-          <form action="" onSubmit={(e)=>{e.preventDefault(); console.log('first'); videoID && searchInput!="" && navigate(`/search/${searchInput}`)}}>
+          <form action="" onSubmit={(e)=>{e.preventDefault(); console.log(searchInput); !location.pathname !="/" && searchInput!="" && navigate(`/search/${searchInput}`)}}>
           <input type="text" placeholder="Search" onChange={handleSearch} />
 
           </form>
