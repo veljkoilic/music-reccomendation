@@ -12,7 +12,7 @@ export const Recommendations = (props) => {
 
   const query = useSelector((state) => state.songs.query);
   useEffect(() => {
-    fetch(`http://localhost:5000/${query}`)
+    fetch(`http://localhost:5000/${props.query ? props.query : query}`)
       .then((res) => res.json())
       .then((data) => dispatch(addSongs({ songs: data.Similar.Results })));
   }, [query]);
@@ -39,5 +39,5 @@ const Container = styled.div`
     flex: "3",
     gridTemplateColumns: "repeat(3, 1fr)",
   })}
-  ${mobile({ gridTemplateColumns: "1fr" })}
+  ${mobile({ gridTemplateColumns: "1fr", padding: "0" })}
 `;

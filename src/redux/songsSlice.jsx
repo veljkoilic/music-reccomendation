@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const songsSlice = createSlice({
     name: 'songs',
     initialState:{
-        query: 'gorillaz',
+        query: 'imagine dragons',
         songs: [],
         currentSong: null
     },

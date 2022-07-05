@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Navbar } from '../components/Navbar'
-
 import { useSelector } from 'react-redux'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube, faWikipediaW } from "@fortawesome/free-brands-svg-icons";
 import { Recommendations } from '../components/Recommendations'
+import { tablet } from '../responsive'
 
 export const Song = () => {
   const videoID = useParams().id
@@ -25,6 +24,8 @@ export const Song = () => {
           </TitleWrap>
           
           <Desc>{currentSong.wTeaser}</Desc>
+          <h2>Comments</h2>
+
         </Info>
         <div className="reccomendations">
         <Recommendations className="" sidebar={true}/>
@@ -46,11 +47,14 @@ const InfoWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 40px;
+  ${tablet({flexDirection: "column"})}
 
   .reccomendations{
     flex: 9;
     height: 700px;
     overflow-y: scroll;
+    ${tablet({widht: "100%"})}
+
   }
 `
 const Info = styled.div`

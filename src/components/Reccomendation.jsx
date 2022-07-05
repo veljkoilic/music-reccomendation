@@ -23,9 +23,9 @@ export const Reccomendation = ({ song, sidebar }) => {
         <Thumbnail src={`https://img.youtube.com/vi/${song.yID}/0.jpg`} />
         <Info>
           <SongName>{song.Name}</SongName>
-          <Link to={song.wUrl}>
+          <a href={song.wUrl} target="_blank">
             <FontAwesomeIcon icon={faLink}/> Read on Wikipedia
-          </Link>
+          </a>
           <Desc>{song.wTeaser.substring(0, 80)}...</Desc>
         </Info>
       </Container>
@@ -44,7 +44,9 @@ const Container = styled.div`
 
 `;
 const Thumbnail = styled.img`
-width: 100%;
+max-width: 100%;
+min-width: 200px;
+height: max-content;
 `;
 
 const Info = styled.div`
