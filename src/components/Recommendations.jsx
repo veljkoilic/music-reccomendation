@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { mobile, tablet } from "../responsive";
+import { mobile, tablet, laptop } from "../responsive";
 import { Reccomendation } from "./Reccomendation";
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -29,12 +29,22 @@ export const Recommendations = () => {
 };
 const Container = styled.div`
   flex: 6;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   padding: 20px 50px;
+  margin: 0 auto;
+  width: 80%;
+  ${laptop(
+      {gridTemplateColumns: "repeat(4, 1fr)"}
+
+  )}
   ${tablet({
     flex: "3",
+    gridTemplateColumns: "repeat(3, 1fr)"
   })}
+  ${mobile(
+      {gridTemplateColumns: "1fr"}
+
+  )}
 `;
