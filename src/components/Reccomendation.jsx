@@ -4,23 +4,31 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
-
+import { useDispatch } from "react-redux";
+import store from "../redux/store";
+import { changeSong } from "../redux/songsSlice";
+import { useNavigate } from "react-router-dom";
 
 export const Reccomendation = ({ song }) => {
-  console.log(song);
+ const dispatch = useDispatch()
+ const navigate = useNavigate()
+ const handleClick = ()=>{
+  dispatch(changeSong({song}))
+  navigate(`/song/${song.yID}`)
+ }
   return (
-    <Link to={`/song/${song.yID}`} style={{display:"flex", justifyContent: "center"}}>
-      <Container>
+    <div onClick={handleClick} style={{display:"flex", cursor:"pointer", justifyContent: "center"}} >
+      <Container onClick={()=>{}}>
         <Thumbnail src={`https://img.youtube.com/vi/${song.yID}/0.jpg`} />
         <Info>
           <SongName>{song.Name}</SongName>
           <Link to={song.wUrl}>
             <FontAwesomeIcon icon={faLink}/> Read on Wikipedia
           </Link>
-          <Desc>{song.wTeaser.substring(0, 100)}...</Desc>
+          <Desc>{song.wTeaser.substring(0, 80)}...</Desc>
         </Info>
       </Container>
-    </Link>
+    </div>
   );
 };
 
@@ -30,15 +38,18 @@ const Container = styled.div`
   width: 250px;
   flex-direction: column;
   margin-bottom: 30px;
+  width: 99%;
 
 `;
-const Thumbnail = styled.img``;
+const Thumbnail = styled.img`
+width: 100%;
+`;
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 10px;
-  gap: 10px;
+  gap: 5px;
   svg{
     font-size: 14px;
   }

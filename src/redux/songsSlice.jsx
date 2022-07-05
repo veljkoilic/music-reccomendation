@@ -4,7 +4,8 @@ const songsSlice = createSlice({
     name: 'songs',
     initialState:{
         query: 'gorillaz',
-        songs: []
+        songs: [],
+        currentSong: null
     },
     reducers: {
         addSongs: (state, action) => {
@@ -12,9 +13,12 @@ const songsSlice = createSlice({
         },
         changeQuery: (state, action) => {
           state.query = action.payload.query
+        },
+        changeSong: (state, action) => {
+          state.currentSong = action.payload.song
         }
     }
 }) 
 
-export const {addSongs, changeQuery} = songsSlice.actions
+export const {addSongs, changeQuery, changeSong} = songsSlice.actions
 export default songsSlice.reducer;

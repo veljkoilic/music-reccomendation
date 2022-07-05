@@ -5,24 +5,24 @@ import { mobile, tablet, laptop } from "../responsive";
 import { Reccomendation } from "./Reccomendation";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import store from "../redux/store";
 import { addSongs } from "../redux/songsSlice";
 
-
-export const Recommendations = () => {
+export const Recommendations = ({ sidebar }) => {
   const dispatch = useDispatch();
 
-  const query = useSelector(state=> state.songs.query)
+  const query = useSelector((state) => state.songs.query);
   useEffect(() => {
     fetch(`http://localhost:5000/${query}`)
       .then((res) => res.json())
-      .then((data) => dispatch(addSongs({songs: data.Similar.Results})));
+      .then((data) => dispatch(addSongs({ songs: data.Similar.Results })));
   }, [query]);
-    let reccomendedMusic = useSelector(state=>state.songs.songs)
-  console.log(query)
-  const songElements = reccomendedMusic.map((song) => song.yID && <Reccomendation key={song.yID} song={song} />)
+  let reccomendedMusic = useSelector((state) => state.songs.songs);
+  console.log(query);
+  const songElements = reccomendedMusic.map(
+    (song) => song.yID && <Reccomendation key={song.yID} song={song} />
+  );
   return (
-    <Container>
+    <Container style={sidebar? { display: "flex", flexDirection: "column" }: {}}>
       {songElements}
     </Container>
   );
@@ -34,17 +34,10 @@ const Container = styled.div`
   gap: 10px;
   padding: 20px 50px;
   margin: 0 auto;
-  width: 80%;
-  ${laptop(
-      {gridTemplateColumns: "repeat(4, 1fr)"}
-
-  )}
+  ${laptop({ gridTemplateColumns: "repeat(4, 1fr)" })}
   ${tablet({
     flex: "3",
-    gridTemplateColumns: "repeat(3, 1fr)"
+    gridTemplateColumns: "repeat(3, 1fr)",
   })}
-  ${mobile(
-      {gridTemplateColumns: "1fr"}
-
-  )}
+  ${mobile({ gridTemplateColumns: "1fr" })}
 `;
