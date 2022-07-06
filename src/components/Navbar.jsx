@@ -11,8 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faBell, faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
 //redux
-import { useDispatch, useSelector } from "react-redux";
-import store from "../redux/store";
+import { useDispatch } from "react-redux";
 import { changeQuery } from "../redux/songsSlice";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
@@ -39,8 +38,8 @@ export const Navbar = () => {
       </Left>
       <Middle>
         <SearchInputWrapper>
-          <form action="" onSubmit={(e)=>{e.preventDefault(); console.log(searchInput); !location.pathname !="/" && searchInput!="" && navigate(`/search/${searchInput}`)}}>
-          <input type="text" placeholder="Search" onChange={handleSearch} />
+          <form action="" onSubmit={(e)=>{e.preventDefault(); console.log(searchInput); !location.pathname !=="/" && searchInput!=="" && navigate(`/search/${searchInput}`)}}>
+          <input type="text" placeholder="Search Artists" onChange={handleSearch} />
 
           </form>
           <FontAwesomeIcon className="search" icon={faMagnifyingGlass} />
